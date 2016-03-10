@@ -1,3 +1,8 @@
+import sys, time, random, math, pygame
+from pygame.locals import *
+from MyLibrary import *
+
+
 #Printing ascii characters
 print("Ascii code 100= " + chr(100))
 
@@ -32,3 +37,27 @@ for row in table: print(row)
 #cp950 cant encode character, illegal multibyte sequence
    
                                                         
+#create a list to be filled with characters for a map
+
+tiles=list()
+for y in range(0,45):
+    for x in range(0,80):
+        tiles.append(8)
+        
+#load sprite sheet
+
+text=MySprite()
+text.load("ascii8*12.png",8,12,32)
+
+        
+#referencing the sprite sheet fill the map
+#todo write the myLibrary lubrary since we skipped that
+for y in range(0,45):
+    for x in range(0,80):
+        index=y*80+x
+        value=tiles[index]
+        text.X=30+x*8
+        text.Y=30+y*12
+        text.frame=text.last_frame=value
+        text.update(0)
+        text.draw(surface)
